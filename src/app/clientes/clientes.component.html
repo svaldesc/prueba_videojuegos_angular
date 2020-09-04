@@ -1,0 +1,94 @@
+<h2>Crear usuario</h2>
+
+<form #nuevoCliente="ngForm" (ngSubmit)="onSubmit(nuevoCliente)">
+
+	<table>
+	<tr>
+		<td>
+			Nombre
+		</td>
+		<td>
+			<input type="text" name="nombre" #nombre="ngModel" [(ngModel)]="nuevo_cliente.nombre" required/>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			Apellido
+		</td>
+		<td>
+			<input type="text" name="apellido" #apellido="ngModel" [(ngModel)]="nuevo_cliente.apellido" required/>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			Tipo documento
+		</td>
+		<td>
+			<input type="text" name="tipo_documento" #tipo_documento="ngModel" [(ngModel)]="nuevo_cliente.tipo_documento" required/>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			Número documento
+		</td>
+		<td>
+			<input type="text" name="numero_documento" #numero_documento="ngModel" [(ngModel)]="nuevo_cliente.numero_documento" required/>
+		</td>
+	</tr>
+</table>
+
+<input type="submit" value="Guardar cliente" [disabled]="!nuevoCliente.form.valid"> 
+
+</form>
+<br>
+
+<input type="button" value="Cliente frecuente" (click)="cliente_frecuente()"> 
+
+<div *ngIf="usuario_guardado">
+	<h2>El usuario se ha guardado correctamente</h2>
+</div>
+
+<div *ngIf="clienteFrecuente && !usuario_guardado">
+	El cliente frecuente es 
+	<b>{{clienteFrecuente[0].nombre}} {{clienteFrecuente[0].apellido}}</b>
+	Total <b>{{clienteFrecuente[0].total}}</b>
+
+</div>
+
+<div *ngIf="!clientes">
+	Cargando...
+</div>
+<br>
+<div *ngIf="clientes">
+	<table width="100%">
+		<tr>
+			<td>
+				Nombre
+			</td>	
+			<td>
+				Apellido
+			</td>	
+			<td>
+				Tipo documento
+			</td>	
+			<td>
+				Número documento
+			</td>	
+		</tr>
+		<tr *ngFor="let cliente of clientes">
+			<td>
+				{{cliente.nombre}}
+			</td>	
+			<td>
+				{{cliente.apellido}}
+			</td>	
+			<td>
+				{{cliente.tipo_documento}}
+			</td>	
+			<td>
+				{{cliente.numero_documento}}
+			</td>	
+		</tr>
+	</table>
+</div>
+

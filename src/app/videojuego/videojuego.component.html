@@ -1,0 +1,31 @@
+<h2>{{titulo}}</h2>
+<p>{{listado}}</p>
+
+<button (click)="getJuegoMasRentado()">Juego mas rentado</button> 
+<button (click)="getVentasDia()">Ventas del día</button>
+<button (click)="findDirector()">Consultar director</button>
+<button >Consultar por protagonista</button>
+<button >Consultar por producto</button>
+
+<br><br>
+<div *ngIf="juegoMasRentado">
+	El juego frecuente es 
+	<b>{{juegoMasRentado[0].nombre}}</b>
+	Total <b>{{juegoMasRentado[0].total}}</b>
+
+</div>
+
+<div *ngIf="ventasDia">
+	<div *ngFor="let venta of ventasDia">
+		Nombre: <b>{{venta.nombre}}</b> - Protagonista: <b>{{venta.protagonista}}</b> - Tecnología: <b>{{venta.tecnologia}}</b>
+	</div>
+
+</div>
+
+<div *ngIf="finddirector">
+	Nombre director: <input type="text" [(ngModel)]="directorNombre"/> <button (click)="getDirector()">Buscar</button>
+	<div *ngFor="let direc of director">
+		Director: {{direc.director}}
+	</div>
+
+</div>
